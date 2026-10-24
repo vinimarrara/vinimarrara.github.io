@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vinicius Marrara · Performance, Dados & CX</title>
+<meta name="description" content="Portfólio de Vinicius Marrara dos Santos: painéis de BI, engenharia de dados e IA aplicada à operação de compra de cotas de consórcio. Todos os projetos usam dados simulados.">
+<meta property="og:title" content="Vinicius Marrara · Performance, Dados & CX">
+<meta property="og:description" content="Painéis navegáveis com dados simulados: torre de controle, dashboards de parceria e secundário de canceladas.">
+<meta property="og:image" content="https://raw.githubusercontent.com/vinimarrara/portfolio-bi/main/preview.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B1220; --bg2:#0F1A2E; --card:#111D33; --card2:#15233D; --line:#1F2E4A; --line2:#2A3C5E;
+  --ink:#E8EEF8; --ink2:#A9B6CC; --ink3:#7487A6; --acc:#5EE0C1; --acc2:#3B82F6; --warn:#F5B946;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+
+/* nav */
+nav{position:sticky;top:0;z-index:20;background:rgba(11,18,32,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;letter-spacing:-.3px}.logo span{color:var(--acc)}
+nav ul{display:flex;gap:28px;list-style:none;font-size:14px;color:var(--ink2)}
+nav ul a:hover{color:var(--ink)}
+.navcta{font-size:14px;font-weight:600;border:1px solid var(--line2);border-radius:999px;padding:7px 14px}
+.navcta:hover{border-color:var(--acc);color:var(--acc)}
+
+/* hero */
+.hero{position:relative;padding:96px 0 72px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:-40% -10% auto auto;width:780px;height:780px;background:radial-gradient(closest-side,rgba(59,130,246,.22),transparent 70%);pointer-events:none}
+.hero:after{content:"";position:absolute;left:-200px;bottom:-260px;width:620px;height:620px;background:radial-gradient(closest-side,rgba(94,224,193,.12),transparent 70%);pointer-events:none}
+.grid-hero{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center;position:relative;z-index:1}
+.kicker{font-size:12.5px;letter-spacing:2.2px;text-transform:uppercase;color:var(--acc);font-weight:600}
+h1{font-size:clamp(40px,6vw,68px);line-height:1.02;letter-spacing:-2px;font-weight:800;margin:14px 0 18px}
+h1 em{font-style:normal;color:var(--ink3)}
+.lead{font-size:19px;color:var(--ink2);max-width:600px}
+.lead b{color:var(--ink);font-weight:600}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;border-radius:12px;padding:13px 20px;border:1px solid var(--line2);transition:.15s}
+.btn.pri{background:var(--acc);color:#05261E;border-color:var(--acc)}
+.btn.pri:hover{filter:brightness(1.08)}
+.btn:not(.pri):hover{border-color:var(--ink3)}
+.flow{display:flex;gap:10px;align-items:center;margin-top:36px;font-size:12.5px;color:var(--ink3);letter-spacing:1.6px;text-transform:uppercase;flex-wrap:wrap}
+.flow i{font-style:normal;color:var(--line2)}
+.flow b{color:var(--ink2);font-weight:600}
+.photo{position:relative;justify-self:end;width:100%;max-width:360px}
+.photo img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:28px;border:1px solid var(--line2);display:block;background:var(--card)}
+.photo .tag{position:absolute;left:-18px;bottom:22px;background:var(--card2);border:1px solid var(--line2);border-radius:14px;padding:12px 14px;font-size:13px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.photo .tag b{display:block;font-size:15px}
+.photo .tag span{color:var(--ink3)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--acc);margin-right:6px;box-shadow:0 0 0 4px rgba(94,224,193,.15)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:64px;position:relative;z-index:1}
+.stat{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:16px;padding:20px}
+.stat b{font-size:34px;font-weight:800;letter-spacing:-1px;display:block;line-height:1.1}
+.stat span{font-size:13.5px;color:var(--ink3)}
+
+/* sections */
+section{padding:88px 0;border-top:1px solid var(--line)}
+.shead{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;flex-wrap:wrap}
+.shead .num{font-size:13px;color:var(--acc);font-weight:600}
+.shead h2{font-size:clamp(28px,4vw,40px);letter-spacing:-1px;font-weight:800;line-height:1.1}
+.intro{color:var(--ink2);font-size:16px;max-width:720px;margin:-18px 0 32px}.intro b{color:var(--ink)}
+
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:48px}
+.about p{color:var(--ink2);margin-bottom:16px;font-size:17px}
+.about p b{color:var(--ink);font-weight:600}
+.pillars{display:grid;gap:12px}
+.pillar{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.pillar h3{font-size:16px;margin-bottom:4px}
+.pillar p{font-size:14.5px;color:var(--ink3);margin:0}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.proj{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
+.proj:hover{border-color:var(--line2);transform:translateY(-3px);box-shadow:0 24px 50px rgba(0,0,0,.35)}
+.proj.feat{grid-column:1/-1;display:grid;grid-template-columns:1.25fr 1fr}
+.shot{position:relative;display:block;aspect-ratio:16/10;background:linear-gradient(135deg,#132544,#0E1A2E);overflow:hidden;border-bottom:1px solid var(--line)}
+.proj.feat .shot{aspect-ratio:auto;min-height:340px;border-bottom:0;border-right:1px solid var(--line)}
+.shot img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;object-position:top left;display:block;transition:transform .5s}
+.proj:hover .shot img{transform:scale(1.03)}
+.shot .ph{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink3);font-size:13px}
+.body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px;flex:1}
+.cat{font-size:11.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--acc);font-weight:600}
+.proj h3{font-size:22px;letter-spacing:-.4px;line-height:1.2}
+.proj p{color:var(--ink2);font-size:15px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tags span{font-size:12px;color:var(--ink2);background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.acts{display:flex;gap:10px;margin-top:auto;padding-top:6px;flex-wrap:wrap}
+.acts a{font-size:14px;font-weight:600;border-radius:10px;padding:9px 14px;border:1px solid var(--line2)}
+.acts a.go{background:rgba(94,224,193,.12);border-color:rgba(94,224,193,.4);color:var(--acc)}
+.acts a:hover{border-color:var(--ink3)}
+.note{margin-top:22px;font-size:13.5px;color:var(--ink3);display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+.note a{color:var(--ink2);text-decoration:underline;text-underline-offset:3px}
+.skel{background:linear-gradient(90deg,var(--card) 0,var(--card2) 50%,var(--card) 100%);background-size:200% 100%;animation:sk 1.2s infinite;border-radius:18px;min-height:380px;border:1px solid var(--line)}
+@keyframes sk{to{background-position:-200% 0}}
+
+/* tools */
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tool{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.tool .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:var(--bg2);border:1px solid var(--line2);color:var(--acc);margin-bottom:14px}
+.tool h3{font-size:17px;margin-bottom:6px}
+.tool p{font-size:14.5px;color:var(--ink3)}
+
+/* timeline */
+.tl{display:grid;gap:0;border-left:1px solid var(--line2);margin-left:6px}
+.tl .it{position:relative;padding:0 0 30px 28px}
+.tl .it:before{content:"";position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--acc)}
+.tl .when{font-size:13px;color:var(--ink3)}
+.tl h3{font-size:18px;margin:2px 0 4px}
+.tl p{color:var(--ink2);font-size:15px;max-width:760px}
+
+/* contact */
+.contact{background:linear-gradient(135deg,#12264A,#0F1A2E 60%);border:1px solid var(--line2);border-radius:24px;padding:48px;display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap}
+.contact h2{font-size:clamp(26px,3.6vw,38px);letter-spacing:-1px;line-height:1.1}
+.contact p{color:var(--ink2);margin-top:8px}
+footer{padding:36px 0 48px;color:var(--ink3);font-size:13.5px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media(max-width:900px){
+  nav ul{display:none}
+  .grid-hero,.about{grid-template-columns:1fr}
+  .photo{justify-self:start;max-width:260px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .projects,.tools{grid-template-columns:1fr}
+  .proj.feat{display:flex}
+  .proj.feat .shot{aspect-ratio:16/10;min-height:0;border-right:0;border-bottom:1px solid var(--line)}
+  .contact{padding:30px}
+  section{padding:64px 0}
+}
+@media(max-width:520px){.wrap{padding:0 16px}.hero{padding:56px 0 48px}.photo .tag{left:12px}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="logo" href="#top">vinicius.marrara<span>/</span></a>
+  <ul><li><a href="#sobre">Sobre</a></li><li><a href="#projetos">Projetos</a></li><li><a href="#ferramentas">Ferramentas</a></li><li><a href="#trajetoria">Trajetória</a></li><li><a href="#contato">Contato</a></li></ul>
+  <a class="navcta" href="https://github.com/vinimarrara" target="_blank" rel="noopener">GitHub ↗</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <div class="grid-hero">
+    <div>
+      <div class="kicker">Performance · Dados · CX · IA aplicada</div>
+      <h1>Vinicius Marrara.<br><em>Transformo dados em decisão.</em></h1>
+      <p class="lead">Estruturei do zero a área de dados e BI de uma fintech de compra de cotas de consórcio. Construo <b>pipelines em BigQuery, SQL e Python</b>, painéis em <b>Power BI e aplicações web com IA</b>, e uso tudo isso para melhorar operação, precificação e experiência do cliente.</p>
+      <div class="btns">
+        <a class="btn pri" href="#projetos">Explorar projetos →</a>
+        <a class="btn" href="https://www.linkedin.com/in/vinicius-marrara-dos-santos-423b6973" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
+      <div class="flow"><b>Dados</b><i>→</i><b>Contexto</b><i>→</i><b>Decisão</b><i>→</i><b>Resultado</b></div>
+    </div>
+    <div class="photo">
+      <img src="foto.jpg" alt="Foto de Vinicius Marrara" onerror="this.style.visibility='hidden'">
+      <div class="tag"><span class="dot"></span><b>Aberto a novas oportunidades</b><span>São Paulo · remoto ou híbrido</span></div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>24+</b><span>dashboards em Power BI e IA</span></div>
+    <div class="stat"><b>19+</b><span>fontes de dados integradas</span></div>
+    <div class="stat"><b>170h+</b><span>economizadas com IA</span></div>
+    <div class="stat"><b>10</b><span>pessoas no time que lidero</span></div>
+  </div>
+</div></header>
+
+<section id="sobre"><div class="wrap">
+  <div class="shead"><span class="num mono">01</span><h2>Sobre mim</h2></div>
+  <div class="about">
+    <div>
+      <p>Sou engenheiro civil de formação e hoje trabalho com <b>performance, dados e experiência do cliente</b> numa fintech de consórcios. Quando cheguei, a empresa não tinha área de dados: montei a base no Google Cloud, os pipelines e os painéis que a diretoria e as áreas usam todos os dias.</p>
+      <p>Meu foco é ligar o número à decisão: qual parceiro converte melhor, onde o funil trava, como precificar cotas, o que o cliente sente na jornada. Também co-desenvolvi o <b>CRM próprio</b> da empresa e cuido de Reclame Aqui, ouvidoria e comunicação com as administradoras parceiras.</p>
+      <p>Faço pós-graduação em <b>Data Science e Analytics na USP/ESALQ</b>.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar"><h3>Dados do zero ao painel</h3><p>Ingestão, modelagem em BigQuery, SQL e Python, até o dashboard que a operação abre de manhã.</p></div>
+      <div class="pillar"><h3>IA aplicada ao dia a dia</h3><p>Ferramentas internas com IA generativa e APIs para automatizar rotinas, scripts e documentação.</p></div>
+      <div class="pillar"><h3>Operação e cliente</h3><p>Funil, SLA, NPS e CSAT acompanhados de perto, com testes A/B e melhoria contínua.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="projetos"><div class="wrap">
+  <div class="shead"><span class="num mono">02</span><h2>Projetos</h2></div>
+  <p class="intro">Painéis que construí para a operação e para administradoras parceiras, recriados com <b>dados 100% simulados</b>: nomes, valores e contratos são fictícios. Todos são navegáveis — filtre, troque de aba e explore.</p>
+  <div class="projects" id="projList"><div class="skel"></div><div class="skel"></div></div>
+  <div class="note"><span id="projNote">Carregando projetos do GitHub…</span><a href="https://github.com/vinimarrara?tab=repositories" target="_blank" rel="noopener">Ver todos os repositórios ↗</a></div>
+</div></section>
+
+<section id="ferramentas"><div class="wrap">
+  <div class="shead"><span class="num mono">03</span><h2>Ferramentas</h2></div>
+  <div class="tools">
+    <div class="tool"><div class="ic mono">SQL</div><h3>SQL e Google BigQuery</h3><p>Modelagem, consultas analíticas e integração de mais de 19 fontes numa base única no Google Cloud.</p></div>
+    <div class="tool"><div class="ic mono">Py</div><h3>Python</h3><p>Tratamento de dados, automações e robôs que atualizam os painéis a partir das bases da operação.</p></div>
+    <div class="tool"><div class="ic mono">BI</div><h3>Power BI</h3><p>DAX, Power Query e gateways com atualização automática para diretoria e áreas de negócio.</p></div>
+    <div class="tool"><div class="ic mono">GAS</div><h3>Google Apps Script</h3><p>Aplicações web publicadas com controle de acesso, servindo os dashboards de parceria e a torre de controle.</p></div>
+    <div class="tool"><div class="ic mono">IA</div><h3>IA generativa</h3><p>Claude, Cursor e APIs para criar ferramentas internas, gerar scripts e documentar pipelines.</p></div>
+    <div class="tool"><div class="ic mono">CX</div><h3>CRM e CX</h3><p>CRM próprio multicanal (e-mail, push, SMS, WhatsApp), NPS, CSAT, SLA e testes A/B.</p></div>
+  </div>
+</div></section>
+
+<section id="trajetoria"><div class="wrap">
+  <div class="shead"><span class="num mono">04</span><h2>Trajetória</h2></div>
+  <div class="tl">
+    <div class="it"><div class="when mono">2025 — hoje</div><h3>Coordenador de Performance e CX · fintech de consórcios</h3><p>Lidero um time de 10 pessoas, estruturei a área de dados e BI e sou responsável por dados, dashboards e melhoria contínua da operação.</p></div>
+    <div class="it"><div class="when mono">2024 — 2025</div><h3>Supervisor de Operações e de Performance & CX</h3><p>Budget x Forecast para a diretoria, projeções financeiras e análise diária de performance de campanhas.</p></div>
+    <div class="it"><div class="when mono">2021 — 2024</div><h3>Analista de Operações Pleno</h3><p>Dashboards de funil, eficiência operacional e satisfação do cliente; diagnósticos de custos e processos.</p></div>
+    <div class="it"><div class="when mono">2011 — 2020</div><h3>Grupo EHTL Viagens · até Líder de Equipe</h3><p>Operação comercial e de atendimento B2B/B2C, gestão de time por KPIs e negociação em canais digitais.</p></div>
+  </div>
+</div></section>
+
+<section id="contato"><div class="wrap">
+  <div class="contact">
+    <div><h2>Vamos conversar?</h2><p>Aberto a posições em performance, dados, BI e CX.</p></div>
+    <div class="btns" style="margin:0">
+      <a class="btn pri" href="https://www.linkedin.com/in/vinicius-marrara-dos-santos-423b6973" target="_blank" rel="noopener">Falar no LinkedIn ↗</a>
+      <a class="btn" href="https://github.com/vinimarrara" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </div>
+</div></section>
+
+<footer><div class="wrap"><span>© <span id="yr"></span> Vinicius Marrara dos Santos</span><span>Todos os dados dos projetos são simulados.</span></div></footer>
+
+<script>
+document.getElementById('yr').textContent=new Date().getFullYear();
+const USER='vinimarrara', TOPIC='portfolio';
+// ordem preferida; repositórios novos com a tag "portfolio" entram depois, do mais recente ao mais antigo
+const ORDER=['portfolio-bi','dashboard-parceria-a','dashboard-parceria-b','dashboard-parceria-c','dashboard-secundario-canceladas'];
+const META={
+  'portfolio-bi':{cat:'Torre de controle',title:'Torre de Controle',desc:'Visão executiva da operação de compra de cotas: fechamento, pagamento e meta, funil de conversão, safras, experiência do cliente, régua de comunicação e dashboards de parceria.',feat:true},
+  'dashboard-parceria-a':{cat:'Parcerias',title:'Dashboard de parceria · Administradora A',desc:'Funil de ação (assinatura do comprador, transferência e pagamento), cotas assinadas por dia e por parceiro, fechamento, autosserviço e comparativo por grupo.'},
+  'dashboard-parceria-b':{cat:'Parcerias',title:'Dashboard de parceria · Administradora B',desc:'Visão ADM, resultado diário e acumulado, e uma aba de assessorias com funil de conversão por etapa, horários de pico e taxa de transferência.'},
+  'dashboard-parceria-c':{cat:'Parcerias',title:'Dashboard de parceria · Administradora C',desc:'Operação, fechamento e autosserviço de uma parceria em crescimento, com funil de ação, cotas por grupo e visão acumulada.'},
+  'dashboard-secundario-canceladas':{cat:'Mercado secundário',title:'Secundário de canceladas · Administradora D',desc:'Resumo executivo contra o business plan, resultado diário e acumulado de contratos assinados e pagos, com receita aberta em taxa de transferência e administração.'}
+};
+const LABEL={'bigquery':'BigQuery','sql':'SQL','python':'Python','apps-script':'Apps Script','google-apps-script':'Apps Script','javascript':'JavaScript','power-bi':'Power BI','dashboard':'Dashboard','chartjs':'Chart.js','data-visualization':'Data viz','ia':'IA','ai':'IA','bi':'BI'};
+const FALLBACK=ORDER.map(n=>({name:n,topics:['portfolio','bigquery','sql','python','apps-script','javascript'],homepage:`https://${USER}.github.io/${n}/`,html_url:`https://github.com/${USER}/${n}`,default_branch:'main',description:''}));
+const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pretty=n=>n.replace(/[-_]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+function card(r,i){
+  const m=META[r.name]||{};const feat=m.feat&&i===0;
+  const live=r.homepage||`https://${USER}.github.io/${r.name}/`;
+  const img=`https://raw.githubusercontent.com/${USER}/${r.name}/${r.default_branch||'main'}/preview.png`;
+  const tags=[...new Set((r.topics||[]).filter(t=>t!==TOPIC).map(t=>LABEL[t]||t))].slice(0,6);
+  const cat=(m.cat||'Projeto')+' / '+String(i+1).padStart(2,'0');
+  return `<article class="proj${feat?' feat':''}">
+    <a class="shot" href="${esc(live)}" target="_blank" rel="noopener" aria-label="Abrir ${esc(m.title||r.name)}"><span class="ph">prévia</span><img loading="lazy" src="${esc(img)}" alt="Prévia de ${esc(m.title||r.name)}" onerror="this.remove()"></a>
+    <div class="body"><div class="cat">${esc(cat)}</div><h3>${esc(m.title||pretty(r.name))}</h3><p>${esc(m.desc||r.description||'')}</p>
+      <div class="tags">${tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>
+      <div class="acts"><a class="go" href="${esc(live)}" target="_blank" rel="noopener">Abrir painel ↗</a><a href="${esc(r.html_url)}" target="_blank" rel="noopener">Ver repositório</a></div></div></article>`;
+}
+function render(list,src){
+  list.sort((a,b)=>{const ia=ORDER.indexOf(a.name),ib=ORDER.indexOf(b.name);if(ia>=0||ib>=0)return(ia<0?99:ia)-(ib<0?99:ib);return new Date(b.pushed_at)-new Date(a.pushed_at)});
+  document.getElementById('projList').innerHTML=list.map(card).join('');
+  document.getElementById('projNote').textContent=src==='api'?`${list.length} projetos · lista atualizada automaticamente a partir do GitHub`:`${list.length} projetos`;
+}
+(async()=>{
+  let cached=null;try{cached=JSON.parse(localStorage.getItem('pf_repos')||'null')}catch(e){}
+  try{
+    const res=await fetch(`https://api.github.com/users/${USER}/repos?per_page=100&sort=pushed`,{headers:{Accept:'application/vnd.github+json'}});
+    if(!res.ok)throw new Error(res.status);
+    const all=await res.json();
+    const list=all.filter(r=>!r.fork&&!r.archived&&(r.topics||[]).includes(TOPIC));
+    if(!list.length)throw new Error('vazio');
+    try{localStorage.setItem('pf_repos',JSON.stringify(list))}catch(e){}
+    render(list,'api');
+  }catch(e){render(cached&&cached.length?cached:FALLBACK,'fallback')}
+})();
+</script>
+</body>
+</html>
